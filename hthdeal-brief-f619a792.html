@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>华体会 · 信息卡片式介绍</title>
+  <style>
+    /* 极简留白 · 窄正文 · 清晰层级 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fafaf8;
+      color: #1e1e1e;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      padding: 2.5rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrapper {
+      max-width: 720px;
+      width: 100%;
+    }
+
+    /* 主视觉区域 —— 干净极简 */
+    .hero {
+      margin: 2.5rem 0 3rem 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 450;
+      letter-spacing: -0.02em;
+      color: #121212;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #454545;
+      max-width: 560px;
+      margin: 0 auto;
+      border-top: 1px solid #e0ddd7;
+      padding-top: 1.2rem;
+    }
+
+    /* 标题层级：h2 小标题 + 分隔感 */
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 480;
+      letter-spacing: 0.008em;
+      color: #1c1c1c;
+      margin: 2.8rem 0 1.2rem 0;
+      border-bottom: 1px solid #eae7e0;
+      padding-bottom: 0.4rem;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 460;
+      margin: 1.6rem 0 0.4rem 0;
+      color: #222;
+    }
+
+    /* 用途卡片（简约·无阴影·轻边框） */
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 1.8rem 0 0.5rem 0;
+    }
+
+    .card-item {
+      flex: 1 1 180px;
+      background: #ffffff;
+      border: 1px solid #e6e3db;
+      border-radius: 16px;
+      padding: 1.4rem 1.2rem;
+      transition: border 0.2s;
+    }
+
+    .card-item:hover {
+      border-color: #bcb5a8;
+    }
+
+    .card-item strong {
+      display: block;
+      font-weight: 520;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: #1f1f1f;
+    }
+
+    .card-item span {
+      font-size: 0.95rem;
+      color: #3d3d3d;
+      display: block;
+      line-height: 1.6;
+    }
+
+    /* 适合人群 —— 列表式轻卡片 */
+    .audience-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.8rem 0 1.2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.8rem;
+    }
+
+    .audience-list li {
+      background: #ffffff;
+      border: 1px solid #e2dfd7;
+      border-radius: 40px;
+      padding: 0.3rem 1.2rem;
+      font-size: 0.95rem;
+      color: #2b2b2b;
+    }
+
+    /* 自然链接段落 */
+    .link-sentence {
+      background: #ffffff;
+      border: 1px solid #eae7e0;
+      border-radius: 20px;
+      padding: 1.5rem 1.8rem;
+      margin: 1.6rem 0 2.2rem 0;
+      font-size: 0.98rem;
+      color: #2c2c2c;
+    }
+
+    .link-sentence a {
+      color: #1f3b5c;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #b7b1a4;
+      font-weight: 450;
+    }
+
+    .link-sentence a:hover {
+      text-decoration-color: #1f3b5c;
+    }
+
+    /* FAQ 摘要 —— 极简问答块 */
+    .faq-block {
+      margin: 2.2rem 0 1rem 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ece9e2;
+      padding: 1rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 480;
+      color: #181818;
+      margin-bottom: 0.15rem;
+    }
+
+    .faq-a {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .faq-a a {
+      color: #1f3b5c;
+      text-decoration: underline 1px #cbc4b8;
+      text-underline-offset: 2px;
+    }
+
+    /* 自然脚标 */
+    .footer-note {
+      margin: 3.5rem 0 0.8rem 0;
+      font-size: 0.8rem;
+      color: #7b7b7b;
+      border-top: 1px solid #e3dfd7;
+      padding-top: 1.6rem;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+
+    /* 响应式 */
+    @media (max-width: 480px) {
+      body {
+        padding: 1.5rem 0.8rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .card-item {
+        flex: 1 1 100%;
+      }
+      .link-sentence {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+
+    @media (min-width: 760px) {
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- 主视觉 -->
+  <div class="hero">
+    <h1>华体会</h1>
+    <p>一个围绕体育信息与日常参与场景逐步展开的页面介绍，内容偏向知识梳理，而非简单罗列。</p>
+  </div>
+
+  <!-- 用途卡片：稳定入口与结构说明 -->
+  <h2>功能卡片 · 定位概览</h2>
+  <div class="card-grid">
+    <div class="card-item">
+      <strong>信息聚合</strong>
+      <span>将分散的体育资讯、赛事概要与内容线索整合到同一界面，降低重复查找的成本。</span>
+    </div>
+    <div class="card-item">
+      <strong>页面脉络</strong>
+      <span>通过卡片、段落与问答的承接，让访客在阅读中自然了解平台所关注的方向。</span>
+    </div>
+    <div class="card-item">
+      <strong>轻量引导</strong>
+      <span>不做强推送，仅提供基础的结构化说明，让使用者自主选择感兴趣的板块。</span>
+    </div>
+  </div>
+
+  <!-- 适合人群（简洁标签式） -->
+  <h2>适合人群</h2>
+  <ul class="audience-list">
+    <li>体育资讯浏览者</li>
+    <li>赛事信息关注者</li>
+    <li>日常阅读型用户</li>
+    <li>对体育内容有好奇心的读者</li>
+  </ul>
+
+  <!-- 自然链接段落（嵌入核心a标签） -->
+  <div class="link-sentence">
+    <p>
+      如果你希望进一步了解平台所整合的内容方向，可以直接阅读
+      <a href="https://hthdeal.com.cn">华体会</a>
+      的主页面。该页面作为基础信息入口，以清晰分区呈现体育相关话题与内容摘要，不设置冗余跳转，便于保持阅读的连续性。
+    </p>
+    <p style="margin-top: 0.6rem;">
+      整体结构偏向于信息卡片式排布，适合那些希望快速把握内容框架、而非被引导点击的用户。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要（承上启下，知识型口吻） -->
+  <h2>常见思路 · 简要说明</h2>
+  <div class="faq-block">
+    <div class="faq-item">
+      <div class="faq-q">这个页面主要提供什么？</div>
+      <div class="faq-a">一份关于“华体会”内容方向的结构化概述，包括用途卡片、人群参考以及 FAQ 片段，不包含跳转式诱导。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">信息更新的节奏如何？</div>
+      <div class="faq-a">页面内容定期调整模块与表述，但始终围绕体育信息聚合与阅读体验展开。具体动态可参考
+        <a href="https://hthdeal.com.cn">华体会</a> 的最近更新。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">这种卡片式结构有什么好处？</div>
+      <div class="faq-a">每个卡片聚焦一个子主题，阅读时可以按需停留，也便于后续扩展新的内容维度，保持页面整体干净。</div>
+    </div>
+  </div>
+
+  <!-- 自然结尾 -->
+  <div class="footer-note">
+    信息卡片式 · 极简留白 · 内容承接
+  </div>
+
+</div>
+</body>
+</html>
